@@ -20,7 +20,7 @@ class JegolController < ApplicationController
                                                                                 server_url,
                                                                                 {:timeout => 20})
   
-    render :json => {:jid=>@session_jid, :sid=>@session_id, :rid=>@session_random_id, :room => room, :nickname => nickname}
+    render :json => {:jid=>@session_jid, :sid=>@session_id, :rid=>@session_random_id, :room => room, :nickname => nickname, :bosh_service => JEGOL_CONFIG['bosh_service']}
   end
   
   def get_jid

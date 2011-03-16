@@ -27,3 +27,6 @@
   
   #chat rooms are named [jegolizating_<ID>]
   muc_name_constant: jegolizing_
+  
+  #XMPP BOSH service url eg. relative url with rewriting /http-bind/, or absolute http://XMPP.MYSERVER.COM/http-bind/
+  bosh_service: <TODO: BOSH-SERVICE-URL>

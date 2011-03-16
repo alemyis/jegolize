@@ -1,6 +1,8 @@
-var BOSH_SERVICE = '/http-bind/';//'http://dev.qworky.net:5280/http-bind/';//
-
+/*
+ * @auther: Alemeshet Alemu
+ */
 var JeGol = {
+	bosh_service: '/http-bind/',
     connection: null,
     room: null,
     nickname: null,
@@ -136,26 +138,12 @@ var JeGol = {
     * Establish connection
     * option 2- from server side json store request for SID
     */
-    loginSIDFromServer : function(serviceURL){
+    loginSIDFromServer : function(data){
         Strophe.info('Login started...');
         
-        Strophe.debug('Getting SID from SID service...');
-            
-        $.getJSON(serviceURL.jsonURL, function(data) {
-            Strophe.debug('SID service returned...');
-            try {
-				JeGol.room = data.room;
-				JeGol.nickname = data.nickname;
-				JeGol.connection.attach(data.jid, data.sid, data.rid, JeGol.onConnect);
+		JeGol.connection.attach(data.jid, data.sid, data.rid, JeGol.onConnect);
 		              
-				Strophe.info('Login complete.');
-              
-            }
-			catch(e){
-				Strophe.error('Login failed: ' + e.message);
-            }
-        
-        });
+		Strophe.info('Login complete.');
     },
     /**
     * Establish connection
@@ -479,9 +467,23 @@ $(document).bind('jegol_init', function(e, d){
 * On Connect event - initialize a strope connection and login from authenticated session service URL
 */
 $(document).bind('connect', function(e, d){
-   JeGol.connection = new Strophe.Connection(BOSH_SERVICE);
-   $('#jegol_connection_status').text('connecting...');
-   JeGol.loginSIDFromServer({jsonURL: $('#jegol_service_url').val()});
+	Strophe.debug('Getting SID from SID service...');
+            
+    var jsonURL = $('#jegol_service_url').val();
+    $.getJSON(jsonURL, function(data) {
+        Strophe.debug('SID service returned...');
+        try {
+			JeGol.room = data.room;
+			JeGol.nickname = data.nickname;
+			JeGol.bosh_service = data.bosh_service;
+			
+			JeGol.connection = new Strophe.Connection(JeGol.bosh_service);
+			JeGol.loginSIDFromServer(data);
+        }
+		catch(e){
+			Strophe.error('Login failed: ' + e.message);
+        }    
+    });
 });
 
 /**
