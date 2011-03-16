@@ -44,8 +44,8 @@ class JegolController < ApplicationController
   def demo
     @room = 'demo_room'
     @active = true
-    @room = session[:room] if !session[:room].nil? && !session[:room].empty?
-    @active = !session[:active].nil? && session[:active].downcase == 'true' 
+    @room = params[:room] if !params[:room].nil? && !params[:room].empty?
+    @active = !params[:active].nil? && params[:active].downcase == 'true' 
     
     respond_to do |format|
       format.html #demo.html.erb
