@@ -1,0 +1,3 @@
+<div>
+	<%= render "jegol", :service => "/jegol/boshsession/#{Jegol.get_MUC_name(@meeting.id.to_s)}", :readonly => !@meeting.active? , :tweeturl => "http://jegolize.com"%>
+</div>

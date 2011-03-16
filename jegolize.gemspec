@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jegolize}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alemeshet Alemu"]
@@ -24,8 +24,38 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "app/controllers/jegol_controller.rb",
+    "app/views/_jegol.html.erb",
+    "app/views/jebol_demo.html.erb",
+    "config/initializers/jegol.rb",
+    "config/jegol.yml",
     "jegolize.gemspec",
     "lib/jegolize.rb",
+    "lib/ruby_bosh.rb",
+    "public/javascripts/jegol.js",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/images/doc_background.gif",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/images/shared.css",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/index.html",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/index.html.xml",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/images/doc_background.gif",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/images/shared.css",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/index.html",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/index.html.xml",
+    "public/javascripts/jegol.plugin/update.notify.js",
+    "public/javascripts/jegol.plugin/update.subject.js",
+    "public/javascripts/jegol.plugin/update.tag.js",
+    "public/javascripts/jegol.plugin/viewer.default.js",
+    "public/javascripts/jegol.plugin/viewer.image.js",
+    "public/javascripts/jegol.plugin/viewer.poll.js",
+    "public/javascripts/jegol.plugin/viewer.youtube.js",
+    "public/javascripts/jegol.tag.js",
+    "public/javascripts/jegol_docs/images/doc_background.gif",
+    "public/javascripts/jegol_docs/images/shared.css",
+    "public/javascripts/jegol_docs/index.html",
+    "public/javascripts/jegol_docs/index.html.xml",
+    "public/javascripts/strophe.js",
+    "public/stylesheets/.gitkeep",
+    "public/stylesheets/jegol.css",
     "test/helper.rb",
     "test/test_jegolize.rb"
   ]
