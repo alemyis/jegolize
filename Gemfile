@@ -10,4 +10,7 @@ group :development do
   gem "bundler", "~> 1.0.0"
   gem "jeweler", "~> 1.5.2"
   gem "rcov", ">= 0"
+  gem "rest-client", ">= 1.6.1"
+  gem "hpricot", ">= 0.8.4"
+  gem "xmpp4r", ">= 0.5"
 end
