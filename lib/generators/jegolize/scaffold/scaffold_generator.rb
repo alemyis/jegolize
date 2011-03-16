@@ -10,9 +10,9 @@ module Jegolize
         puts '-----------------------------------------------------'
         
         # Copy views
-        filename_pattern = File.join self.class.source_root, "app/views/*.html.erb"
+        filename_pattern = File.join self.class.source_root, "app/views/jegol/*.html.erb"
         Dir.glob(filename_pattern).map {|f| File.basename f}.each do |f|
-          copy_file "#{self.class.source_root}/app/views/#{f}", "app/views/jegol/#{f}"
+          copy_file "#{self.class.source_root}/app/views/jegol/#{f}", "app/views/jegol/#{f}"
         end
         
         # Copy server side components - controller, config, init, 
@@ -37,6 +37,7 @@ module Jegolize
       
       def create_route
         route "match 'jegol/boshsession/:room_jid' => 'jegol#new_boshsession', :conditions => {:method => :get }"
+        route "match 'jegol/demo/:room/:active' => 'jegol#demo', :conditions => {:method => :get }"
       end
     end
   end

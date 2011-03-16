@@ -1,8 +1,8 @@
 Description:
-	TODO - 
+	Generate's jebol files - controllers  
 
 Usage:
-	TODO -
+	rails g jegolize:scaffold
 
 Examples:
-	TODO -
+	rails g jegolize:scaffold

@@ -40,4 +40,15 @@ class JegolController < ApplicationController
     client.close
     return username
   end
+  
+  def demo
+    @room = 'demo_room'
+    @active = true
+    @room = session[:room] if !session[:room].nil? && !session[:room].empty?
+    @active = !session[:active].nil? && session[:active].downcase == 'true' 
+    
+    respond_to do |format|
+      format.html #demo.html.erb
+    end
+  end
 end
