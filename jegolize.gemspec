@@ -32,15 +32,10 @@ Gem::Specification.new do |s|
     "jegolize.gemspec",
     "lib/jegolize.rb",
     "lib/ruby_bosh.rb",
+    "lib/jegol/scaffold/scaffold_generator.rb",
+	"lib/jegol/scaffold/USAGE",
+    
     "public/javascripts/jegol.js",
-    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/images/doc_background.gif",
-    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/images/shared.css",
-    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/index.html",
-    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/index.html.xml",
-    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/images/doc_background.gif",
-    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/images/shared.css",
-    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/index.html",
-    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/index.html.xml",
     "public/javascripts/jegol.plugin/update.notify.js",
     "public/javascripts/jegol.plugin/update.subject.js",
     "public/javascripts/jegol.plugin/update.tag.js",
@@ -54,10 +49,7 @@ Gem::Specification.new do |s|
     "public/javascripts/jegol_docs/index.html",
     "public/javascripts/jegol_docs/index.html.xml",
     "public/javascripts/strophe.js",
-    "public/stylesheets/.gitkeep",
-    "public/stylesheets/jegol.css",
-    "test/helper.rb",
-    "test/test_jegolize.rb"
+    "public/stylesheets/jegol.css"
   ]
   s.homepage = %q{http://github.com/alemyis/jegolize}
   s.licenses = ["MIT"]
