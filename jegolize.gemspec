@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alemeshet Alemu"]
-  s.date = %q{2011-03-15}
+  s.date = %q{2011-03-16}
   s.description = %q{XMPP compatible reach chat organizer}
   s.email = %q{alemyis@gmail.com}
   s.extra_rdoc_files = [
@@ -30,12 +30,19 @@ Gem::Specification.new do |s|
     "config/initializers/jegol.rb",
     "config/jegol.yml",
     "jegolize.gemspec",
+    "lib/generators/jegolize/scaffold/USAGE",
+    "lib/generators/jegolize/scaffold/scaffold_generator.rb",
     "lib/jegolize.rb",
     "lib/ruby_bosh.rb",
-    "lib/jegolize/scaffold/scaffold_generator.rb",
-	"lib/jegolize/scaffold/USAGE",
-    
     "public/javascripts/jegol.js",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/images/doc_background.gif",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/images/shared.css",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/index.html",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.subject_docs/index.html.xml",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/images/doc_background.gif",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/images/shared.css",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/index.html",
+    "public/javascripts/jegol.plugin/jegol.plugin.update.tag_docs/index.html.xml",
     "public/javascripts/jegol.plugin/update.notify.js",
     "public/javascripts/jegol.plugin/update.subject.js",
     "public/javascripts/jegol.plugin/update.tag.js",
@@ -44,8 +51,15 @@ Gem::Specification.new do |s|
     "public/javascripts/jegol.plugin/viewer.poll.js",
     "public/javascripts/jegol.plugin/viewer.youtube.js",
     "public/javascripts/jegol.tag.js",
+    "public/javascripts/jegol_docs/images/doc_background.gif",
+    "public/javascripts/jegol_docs/images/shared.css",
+    "public/javascripts/jegol_docs/index.html",
+    "public/javascripts/jegol_docs/index.html.xml",
     "public/javascripts/strophe.js",
-    "public/stylesheets/jegol.css"
+    "public/stylesheets/.gitkeep",
+    "public/stylesheets/jegol.css",
+    "test/helper.rb",
+    "test/test_jegolize.rb"
   ]
   s.homepage = %q{http://github.com/alemyis/jegolize}
   s.licenses = ["MIT"]
