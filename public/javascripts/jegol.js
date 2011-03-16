@@ -8,6 +8,9 @@ var JeGol = {
     participants: null,
     lastmessagefrom: null,
     autoReconnect: true,
+	reconnectionDelay: 1000, //delay this many msec before trying to reconnect
+	reconnectionAttempt: 0,
+	reconnectionAttemptLimit: 10,
     viewerPlugins: {},
     updatePlugins: {},
 	/**
@@ -518,7 +521,13 @@ $(document).bind('disconnected', function(){
     
     if(JeGol.autoReconnect == true)
     {
-		$(document).trigger('connect');
+		JeGol.reconnectionAttempt += 1;
+		//incrementally delay connection attempt
+		if (JeGol.reconnectionAttempt < JeGol.reconnectionAttemptLimit) {
+			setTimeout(function(){
+				$(document).trigger('connect');
+			}, JeGol.reconnectionAttempt * JeGol.reconnectionDelay);
+		}
     }
 });
 
