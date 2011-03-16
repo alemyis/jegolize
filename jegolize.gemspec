@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jegolize}
-  s.version = "0.1.3"
+  s.version = "0.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alemeshet Alemu"]
@@ -32,8 +32,8 @@ Gem::Specification.new do |s|
     "jegolize.gemspec",
     "lib/jegolize.rb",
     "lib/ruby_bosh.rb",
-    "lib/jegol/scaffold/scaffold_generator.rb",
-	"lib/jegol/scaffold/USAGE",
+    "lib/jegolize/scaffold/scaffold_generator.rb",
+	"lib/jegolize/scaffold/USAGE",
     
     "public/javascripts/jegol.js",
     "public/javascripts/jegol.plugin/update.notify.js",
@@ -44,10 +44,6 @@ Gem::Specification.new do |s|
     "public/javascripts/jegol.plugin/viewer.poll.js",
     "public/javascripts/jegol.plugin/viewer.youtube.js",
     "public/javascripts/jegol.tag.js",
-    "public/javascripts/jegol_docs/images/doc_background.gif",
-    "public/javascripts/jegol_docs/images/shared.css",
-    "public/javascripts/jegol_docs/index.html",
-    "public/javascripts/jegol_docs/index.html.xml",
     "public/javascripts/strophe.js",
     "public/stylesheets/jegol.css"
   ]
