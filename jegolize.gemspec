@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "jegolize.gemspec",
     "lib/jegolize.rb",
     "test/helper.rb",
     "test/test_jegolize.rb"
