@@ -454,121 +454,125 @@ var JeGol = {
     }
 }
 
-/**
-* Bind event: jegol_init
-*/
-$(document).bind('jegol_init', function(e, d){
-    JeGol.init();
-    $(document).trigger('connect');
-});
-
-
-/**
-* On Connect event - initialize a strope connection and login from authenticated session service URL
-*/
-$(document).bind('connect', function(e, d){
-	Strophe.debug('Getting SID from SID service...');
-            
-    var jsonURL = $('#jegol_service_url').val();
-	$.ajax({
-	  url: jsonURL,
-	  success: function(data) {
-		Strophe.debug('SID service returned...');
-		try {
-			JeGol.room = data.room;
-			JeGol.nickname = data.nickname;
-			JeGol.bosh_service = data.bosh_service;
-			
-			JeGol.connection = new Strophe.Connection(JeGol.bosh_service);
-			JeGol.loginSIDFromServer(data);
-		}
-		catch(e){
-			Strophe.error('Login failed: ' + e.message);
-		}  
-	  }
+function bindEvents()
+{	
+	/**
+	* Bind event: jegol_init
+	*/
+	$(document).bind('jegol_init', function(){
+	    JeGol.init();
+	    $(document).trigger('connect');
 	});
-});
-
-/**
-* After connection is made, initialize properties
-*/
-$(document).bind('connected', function(){
-	// Chat room is not yet joined
-	JeGol.joined = false; 
-	// Empty participants list. Haven't gotten them yet.
-	JeGol.participants = {};
-	// Make my presence known to XMPP server
-	JeGol.connection.send($pres().c('priority').t('-1'));
 	
-	// Register listeners
-	JeGol.connection.addHandler(JeGol.onPresence, null, 'presence', null, null,  null); 
-	// TODO: Private IM is not supported yet 
-	//JeGol.connection.addHandler(JeGol.onPublicMessage, null, 'message', 'chat', null,  null); 
-	JeGol.connection.addHandler(JeGol.onPublicMessage, null, 'message', 'groupchat', null,  null);
-    
-	// If nickname is known from cookie, pick that up.
-	if(JeGol.getCookie("nickname") != ''){
-		JeGol.nickname = JeGol.getCookie("nickname");
-    }
 	
-	// Make my presence known to chat room
-	JeGol.connection.send($pres({to: JeGol.room + '/' + JeGol.nickname}).c('x', {xmlns: Strophe.NS.MUC}));
-});
-
-/**
-* On disconnect, clear out UI elements, kill connection and trigger reconnection if specified
-*/
-$(document).bind('disconnected', function(){
-    JeGol.connection = null;
-    $('#jegol_topic').empty();
-    $('#jegol_roster').empty();
-    $('#jegol_chatlog').empty();
-    
-    if(JeGol.autoReconnect == true)
-    {
-		JeGol.reconnectionAttempt += 1;
-		//incrementally delay connection attempt
-		if (JeGol.reconnectionAttempt < JeGol.reconnectionAttemptLimit) {
-			setTimeout(function(){
-				$(document).trigger('connect');
-			}, JeGol.reconnectionAttempt * JeGol.reconnectionDelay);
-		}
-    }
-});
-
-$(document).bind('room_joined', function(){
-    JeGol.joined = true;
-    JeGol.addMessage("<div class='jegol_log_i_joined'>*** Room joined.</div>")
-});
-
-$(document).bind('user_joined', function(e, nickname){
-    JeGol.addMessage("<div class='jegol_log_user_joined'>" + JeGol._stripTimeStampFromNickname(nickname) + " joined.</div>")
-});
-
-$(document).bind('user_left', function(e, nickname){
-    JeGol.addMessage("<div class='jegol_log_user_left'>" + JeGol._stripTimeStampFromNickname(nickname) + " left.</div>")
-});
-
-/**
-* UI action listener - on enter, do post
-*/
-$('#jegol_msgArea').live('keypress', function(e) {
-    if(e.keyCode == 13) {
-        e.preventDefault();        
-        JeGol.execCommand($(this).val());
-        $(this).val('');
-    }
-});
-
-$('#jegol_postButton').live('click', function(e){
-    JeGol.execCommand($('#jegol_msgArea').val());
-    $('#jegol_msgArea').val('');
-});
+	/**
+	* On Connect event - initialize a strope connection and login from authenticated session service URL
+	*/
+	$(document).bind('connect', function(e, d){
+		Strophe.debug('Getting SID from SID service...');
+	            
+	    var jsonURL = $('#jegol_service_url').val();
+		$.ajax({
+		  url: jsonURL,
+		  success: function(data) {
+			Strophe.debug('SID service returned...');
+			try {
+				JeGol.room = data.room;
+				JeGol.nickname = data.nickname;
+				JeGol.bosh_service = data.bosh_service;
+				
+				JeGol.connection = new Strophe.Connection(JeGol.bosh_service);
+				JeGol.loginSIDFromServer(data);
+			}
+			catch(e){
+				Strophe.error('Login failed: ' + e.message);
+			}  
+		  }
+		});
+	});
+	
+	/**
+	* After connection is made, initialize properties
+	*/
+	$(document).bind('connected', function(){
+		// Chat room is not yet joined
+		JeGol.joined = false; 
+		// Empty participants list. Haven't gotten them yet.
+		JeGol.participants = {};
+		// Make my presence known to XMPP server
+		JeGol.connection.send($pres().c('priority').t('-1'));
+		
+		// Register listeners
+		JeGol.connection.addHandler(JeGol.onPresence, null, 'presence', null, null,  null); 
+		// TODO: Private IM is not supported yet 
+		//JeGol.connection.addHandler(JeGol.onPublicMessage, null, 'message', 'chat', null,  null); 
+		JeGol.connection.addHandler(JeGol.onPublicMessage, null, 'message', 'groupchat', null,  null);
+	    
+		// If nickname is known from cookie, pick that up.
+		if(JeGol.getCookie("nickname") != ''){
+			JeGol.nickname = JeGol.getCookie("nickname");
+	    }
+		
+		// Make my presence known to chat room
+		JeGol.connection.send($pres({to: JeGol.room + '/' + JeGol.nickname}).c('x', {xmlns: Strophe.NS.MUC}));
+	});
+	
+	/**
+	* On disconnect, clear out UI elements, kill connection and trigger reconnection if specified
+	*/
+	$(document).bind('disconnected', function(){
+	    JeGol.connection = null;
+	    $('#jegol_topic').empty();
+	    $('#jegol_roster').empty();
+	    $('#jegol_chatlog').empty();
+	    
+	    if(JeGol.autoReconnect == true)
+	    {
+			JeGol.reconnectionAttempt += 1;
+			//incrementally delay connection attempt
+			if (JeGol.reconnectionAttempt < JeGol.reconnectionAttemptLimit) {
+				setTimeout(function(){
+					$(document).trigger('connect');
+				}, JeGol.reconnectionAttempt * JeGol.reconnectionDelay);
+			}
+	    }
+	});
+	
+	$(document).bind('room_joined', function(){
+	    JeGol.joined = true;
+	    JeGol.addMessage("<div class='jegol_log_i_joined'>*** Room joined.</div>")
+	});
+	
+	$(document).bind('user_joined', function(e, nickname){
+	    JeGol.addMessage("<div class='jegol_log_user_joined'>" + JeGol._stripTimeStampFromNickname(nickname) + " joined.</div>")
+	});
+	
+	$(document).bind('user_left', function(e, nickname){
+	    JeGol.addMessage("<div class='jegol_log_user_left'>" + JeGol._stripTimeStampFromNickname(nickname) + " left.</div>")
+	});
+	
+	/**
+	* UI action listener - on enter, do post
+	*/
+	$('#jegol_msgArea').live('keypress', function(e) {
+	    if(e.keyCode == 13) {
+	        e.preventDefault();        
+	        JeGol.execCommand($(this).val());
+	        $(this).val('');
+	    }
+	});
+	
+	$('#jegol_postButton').live('click', function(e){
+	    JeGol.execCommand($('#jegol_msgArea').val());
+	    $('#jegol_msgArea').val('');
+	});
+}
 
 /**
 * Start connection on HTML page load
 */
 window.onload = function() {
+	bindEvents();
 	$(document).trigger('jegol_init');
 };
 
