@@ -470,20 +470,23 @@ $(document).bind('connect', function(e, d){
 	Strophe.debug('Getting SID from SID service...');
             
     var jsonURL = $('#jegol_service_url').val();
-    $.getJSON(jsonURL, function(data) {
-        Strophe.debug('SID service returned...');
-        try {
+	$.ajax({
+	  url: jsonURL,
+	  success: function(data) {
+		Strophe.debug('SID service returned...');
+		try {
 			JeGol.room = data.room;
 			JeGol.nickname = data.nickname;
 			JeGol.bosh_service = data.bosh_service;
 			
 			JeGol.connection = new Strophe.Connection(JeGol.bosh_service);
 			JeGol.loginSIDFromServer(data);
-        }
+		}
 		catch(e){
 			Strophe.error('Login failed: ' + e.message);
-        }    
-    });
+		}  
+	  }
+	});
 });
 
 /**
