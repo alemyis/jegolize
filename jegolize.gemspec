@@ -65,7 +65,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.2}
-  s.summary = %q{XMPP compatible reach chat organizer}
+  s.summary = %q{XMPP compatible rich chat organizer}
   s.test_files = [
     "test/helper.rb",
     "test/test_jegolize.rb"
