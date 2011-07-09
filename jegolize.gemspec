@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alemeshet Alemu"]
   s.date = %q{2011-03-22}
-  s.description = %q{XMPP compatible reach chat organizer}
+  s.description = %q{XMPP compatible rich chat organizer}
   s.email = %q{alemyis@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
